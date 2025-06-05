@@ -46,3 +46,54 @@ Namun, sistem rekomendasi *Content-Based Filtering* juga memiliki kekurangan yai
 Tabel 1 Informasi Dataset 
 
 Dataset berasal dari kaggle tentang Rekomendasi Buku. Pada data Books terdapat 271.360 baris dengan 8 kolom yang terdiri dari ISBN, book title, book author, year of publication, publisher, image url s, image url m dan image url l. Kemudian pada data Users terdapat 278.858 baris dan 3 kolom yang tediri dari User-Id, location dan age. Pada data Ratings terdapat 11.497.80 baris dan 3 kolom yang tediri dari User-Id, ISBN, Book rating. Pada dataset ini, input dan output difokuskan pada pemberian rekomendasi buku, dengan rating yang mencerminkan kualitas atau tingkat apresiasi pengguna terhadap buku tersebut. Rating 0 dapat berarti rating implisit, sedangkan rating dari 1 hingga 10 menunjukkan tingkat kualitas buku berdasarkan penilaian pengguna.
+
+### 3.2 Deskripsi Variabel 
+
+| Nama Variabel Books                                              | Deskripsi                                                                                            |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| ISBN                                                             | Identifikasi unik untuk buku.                                                                        |
+| Book Title                                                       | Berisikan judul buku.                                                                                |
+| Book Author                                                      | Berisikan penulis buku.                                                                              |
+| Year of Publication                                              | Tahun buku diterbitkan.                                                                              |
+| Publisher                                                        | Penerbit buku.                                                                                       |
+| Image-URL-S                                                      | URL untuk gambar sampul buku berukuran kecil.                                                        |
+| Image-URL-M                                                      | URL untuk gambar sampul buku berukuran sedang.                                                       |
+| Image-URL-L                                                      | URL untuk gambar sampul buku berukuran besar.                                                        |
+
+Tabel 2 Deskripsi Variabel Books
+
+![image](https://github.com/user-attachments/assets/5f9dd415-389d-41a5-bde3-a45f9d7d2c52)
+
+Gambar 1 Informasi Dataset Books
+
+![image](https://github.com/user-attachments/assets/6b6b2ce4-ea18-4af1-9963-c01ad1730ed9)
+
+Gambar 2 Sampel Dataset
+
+| Nama Variabel Users                                              | Deskripsi                                                                                            |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| User-ID                                                          | Mengidentifikasi pengguna secara unik.                                                               |
+| Location                                                         | Menyimpan informasi lokasi pengguna.                                                                 |
+| Age                                                              | Menyimpan informasi usia pengguna.                                                                   |
+
+Tabel 3 Deskripsi Variabel Users
+
+![image](https://github.com/user-attachments/assets/7df394d4-8f1c-4ecf-b3dc-31c9e77c9e6f)
+
+Gambar 3 Informasi Dataset Users
+
+
+
+
+| Nama Variabel Ratings                                            | Deskripsi                                                                                            |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| User-ID                                                          | Mengidentifikasi pengguna secara unik.                                                               |
+| ISBN                                                             | Identifikasi unik untuk buku.                                                                        |
+| Book Rating                                                      | Menunjukkan rating yang diberikan oleh pengguna untuk buku-buku tertentu dan berskala 0 sampai 10.   |
+
+Tabel 4 Deskripsi Variabel Ratings
+
+
+
+
+
