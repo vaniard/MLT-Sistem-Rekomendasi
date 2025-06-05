@@ -82,7 +82,9 @@ Tabel 3 Deskripsi Variabel Users
 
 Gambar 3 Informasi Dataset Users
 
+![image](https://github.com/user-attachments/assets/74755378-6a0d-41b1-9d88-66b361d12f7d)
 
+Gambar 4 Sampel Dataset
 
 
 | Nama Variabel Ratings                                            | Deskripsi                                                                                            |
@@ -92,6 +94,68 @@ Gambar 3 Informasi Dataset Users
 | Book Rating                                                      | Menunjukkan rating yang diberikan oleh pengguna untuk buku-buku tertentu dan berskala 0 sampai 10.   |
 
 Tabel 4 Deskripsi Variabel Ratings
+
+![image](https://github.com/user-attachments/assets/6f5a4e41-0a4c-4dd2-a39a-d2b7fd51600b)
+
+Gambar 5 Informasi Dataset
+
+![image](https://github.com/user-attachments/assets/ab1edfa4-8766-456f-9685-7c87029eb7d4)
+
+Gambar 6 Sampel Dataset
+
+### 3.3 Univariate Exploratory Data Analysis
+
+![image](https://github.com/user-attachments/assets/02e55cdf-d596-47db-95bd-71c00a9d823b)
+
+Gambar 7 Histogram Distribusi Tahun Publikasi Buku
+
+Distribusi menunjukkan adanya ekplorasi dan ekspansi besar-besaran di dunia penerbitan buku sejak 1980-an, yang kemudian memuncak pada awal 2000-an. Setelah itu, terjadi penurunan, yang bisa jadi bukan karena minat baca yang menurun akan tetapi karena perubahan format media atau keterbatasan data baru.
+
+![image](https://github.com/user-attachments/assets/645b7895-0664-43a6-9604-0fc8d3c145c1)
+
+Gambar 8 Histogram Distribusi Usia Pengguna
+
+Distribusi menunjukkan bahwa pengguna didominasi oleh kelompok usia produktif, terutama antara 20 hingga 35 tahun. Hal ini bisa menjadi dasar untuk menyesuaikan strategi pemasaran, desan antarmuka, maupun fitur produk agar lebih sesuai dengan karakteristik usia dominan. 
+
+![image](https://github.com/user-attachments/assets/b51ef162-07bd-4606-ae71-ace8c4233ecc)
+
+Gambar 9 Diagram Rating Buku
+
+Berdasarkan diagram diatas sebagian besar buku kemungkinan belum diberi rating. Dari buku yang diberi rating, kebanyakan mendapatkan nilai cukup tinggi yaitu 7 sampai 10, hal ini menunjukkan kepuasan pengguna terhadap buku-buku tersebut. Distribusi ini dapat digunakan untuk mengidentifikasi buku yang populer serta untuk cleaning data sebelum digunakan dalam model rekomendasi. 
+
+## 4. Data Preparation
+
+Data preparation *Content-Based Filtering* : 
+
+1. Mengatasi Missing Value :
+   - Setelah menggabungkan dataset `ratings` dengan informasi buku dari dataset `books`, muncul nilai yang hilang (missing value) pada kolom `Book-Title` dan `Book-Author`.
+   - Untuk menangani missing value ini, kode menggunakan metode `dropna()` pada DataFrame `books_all`. Metode ini akan menghapus baris-baris yang mengandung nilai yang hilang.
+   - Pengecekan ulang missing value dilakukan setelah menggunakan `dropna()` untuk memastikan tidak ada lagi missing value.
+     
+2. Mengurutkan Data :
+   - Data pada DataFrame yang sudah dibersihkan dari missing value `books_all_clean` diurutkan berdasarkan kolom `ISBN` secara menaik `ascending=True`. Hasil pengurutan ini disimpan dalam DataFrame baru bernama `preparation`.
+
+3. Mengatasi Data Duplikat :
+   - Setelah diurutkan, terdapat kemungkinan adanya data duplikat berdasarkan `ISBN`. Kode menggunakan metode `drop_duplicates('ISBN')` pada DataFrame `preparation` untuk menghapus baris-baris yang memiliki nilai ISBN yang sama, sehingga setiap buku hanya muncul sekali.
+
+4. Konversi Data Series Menjadi List :
+   - Kolom `ISBN`, `Book-Title`, dan `Book-Author` dari DataFrame `preparation` yang sudah bersih dan unik dikonversi menjadi list Python. Ini dilakukan untuk memudahkan akses dan penggunaan data dalam pembuatan model rekomendasi.
+   - Panjang dari setiap list (jumlah `Book ID`, `Book Title`, dan `Book Author`) dicetak untuk memastikan jumlah data konsisten.
+  
+5. Membuat Dictionary Baru :
+   - List `book_id`, `book_title`, dan `book_author` kemudian digunakan untuk membuat DataFrame baru bernama `new_book`.
+   - DataFrame ini memiliki tiga kolom: `id` (untuk ISBN), `book_title`, dan `book_author`.
+   - DataFrame `new_book` ini berisi informasi unik untuk setiap buku yang akan digunakan dalam pembangunan model Content Based Filtering.
+  
+Data preparation Collaborative Filtering : 
+
+1. 
+
+
+
+
+
+
 
 
 
