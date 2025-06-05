@@ -149,7 +149,38 @@ Data preparation *Content-Based Filtering* :
   
 Data preparation Collaborative Filtering : 
 
-1. 
+1. Menggunakan Dataset Ratings :
+   - Data awal yang digunakan untuk collaborative filtering merupakan dataset `ratings`.
+   - Variabel `data` didefinisikan ulang untuk merujuk pada dataset `ratings`.
+     
+2. Mengubah User-ID menjadi List dan Encoding :
+   -  Semua nilai unik dalam kolom `User-ID` dari dataset `data` diekstrak dan disimpan dalam list bernama `users_id`.
+   - Kemudian, dilakukan "encoding" untuk `User-ID`. Ini berarti setiap `User-ID` unik diberikan representasi numerik berupa integer. `users_encoded` merupakan dictionary yang memetakan `User-ID` asli ke integer yang di-encode, sementara `users_encoded_to_user` adalah kebalikannya (memetakan integer ke `User-ID` asli). Ini diperlukan karena model machine learning bekerja lebih baik dengan input numerik.
+
+3. Mengubah ISBN menjadi List dan Encoding :
+   - Langkah yang serupa dilakukan untuk kolom `ISBN`. Nilai unik `ISBN` disimpan dalam list `books_id`.
+   - Dilakukan encoding untuk `ISBN` menggunakan `books_to_book_encoded` (`ISBN` asli ke integer) dan `books_encoded_to_book` (integer ke `ISBN` asli).
+
+4. Membuat Kolom Encoding Baru :
+   - Dua kolom baru ditambahkan ke DataFrame `data: user dan book`.
+Kolom user diisi dengan nilai integer yang di-encode dari kolom `User-ID` menggunakan dictionary `users_encoded`.
+   - Kolom `book` diisi dengan nilai integer yang di-encode dari kolom `ISBN` menggunakan dictionary `books_to_book_encoded`. Ini menciptakan representasi numerik dari interaksi pengguna dan buku.
+  
+5. Mendapatkan Informasi Data :
+   - Jumlah pengguna unik `(num_users)` dan jumlah buku unik `(num_book)` dihitung dari hasil encoding.
+   - Nilai minimum `(min_rating)` dan maksimum `(max_rating)` dari kolom `Book-Rating` diidentifikasi.
+   - Tipe data kolom `Book-Rating` diubah menjadi float32, yang umum digunakan dalam model deep learning.
+   - Informasi mengenai jumlah pengguna, buku, serta rentang rating dicetak.
+
+6. Normalisasi Rating :
+   - Nilai rating dalam kolom Book-Rating` dinormalisasi ke dalam rentang antara 0 dan 1. Rumus normalisasi yang digunakan adalah: `(x - min_rating)` / `(max_rating - min_rating)`. Normalisasi ini membantu model untuk belajar lebih efektif, terutama dengan fungsi aktivasi sigmoid pada output layer model.
+  
+7. Pembagian Data Training dan Validasi :
+   - DataFrame `data` diacak secara acak `(sample(frac=1, random_state=42))` untuk memastikan distribusi data yang merata.
+   - Data fitur `(X)` dibuat dari kolom `user dan book`, dan data target `(y)` dibuat dari kolom `Book-Rating` yang sudah dinormalisasi.
+   - Data kemudian dibagi menjadi set pelatihan (80%) dan set validasi (20%) berdasarkan indeks. `X_train`, `y_train` untuk pelatihan, dan `X_val`, `y_val` untuk validasi.
+
+
 
 
 
