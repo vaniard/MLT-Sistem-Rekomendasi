@@ -30,5 +30,19 @@ Namun, sistem rekomendasi *Content-Based Filtering* juga memiliki kekurangan yai
 
 2. **Collaborative Filtering** memilih data yang bersumber pada kesamaan karakter pengguna untuk memberikan informasi berdasarkan pola kelompok konsumen yang serupa, memungkinkan informasi baru diberikan kepada pengguna [[7]](https://ejournal.akakom.ac.id/index.php/jiko/article/view/727/pdf). *Collaborative Filtering* memiliki beberapa kelebihan yaitu rekomendasi tetap akan bekerja dalam keadaan dimana konten sulit dianlisi sekalipun. Namun metode ini juga memiliki kekurangan yaitu membutuhkan parameter rating, sehingga jika ada item baru sistem tidak akan merekomendasikan item tersebut [[8]](https://d1wqtxts1xzle7.cloudfront.net/84205803/02-EKO-WIJAYA-libre.pdf?1650030063=&response-content-disposition=inline%3B+filename%3DSistem_Rekomendasi_Laptop_Menggunakan_Co.pdf&Expires=1749066372&Signature=QwbSdVsHpoDNf2r-kHUyoELmKFUew32ZrKQ1QIHfeLPBbsQzfT694rqozpuZrIXVVIIA4ybsJZNHlzPZTXGlDU~XdhVNUYJPhl6lfdhavNQqrQabBVk6FNUCMDDnwg8XZocZuCoSQ72EKLR8XlHgUak62nuOMBUx7gjXjmc80NgavK0HoxOVG3nbS1NAywrQh2DTvtm40TSXNE7ESwxgO27GASK8hNi2jleqVRr--ErJJe4gy9hdKabAo2LG3IU7aPIZBCvkF-Rv5jrcqudIO~l5cwHS-y16qUuJ~EwyoM8WRRHTyTj~3UbrsQzENI09MBHOPikm2UyE14HE9rbKVg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA).
 
-## Data Understanding 
+## 3. Data Understanding 
 
+### 3.1 Deskripsi Dataset 
+
+| Jenis     | Keterangan |
+|-----------|------------|
+| **Title** | *Book Recommendation Dataset* |
+| **Source** | [Kaggle](https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset) |
+| **License** | CC0: Public Domain |
+| **Visibility** | Public |
+| **Tags** | *Online Communities*, *Literature*, *Art*, *Recommender Systems*, *Culture and Humanities* | 
+| **Usability** | 10.00 |
+
+Tabel 1 Informasi Dataset 
+
+Dataset berasal dari kaggle tentang Rekomendasi Buku. Pada data Books terdapat 271.360 baris dengan 8 kolom yang terdiri dari ISBN, book title, book author, year of publication, publisher, image url s, image url m dan image url l. Kemudian pada data Users terdapat 278.858 baris dan 3 kolom yang tediri dari User-Id, location dan age. Pada data Ratings terdapat 11.497.80 baris dan 3 kolom yang tediri dari User-Id, ISBN, Book rating. Pada dataset ini, input dan output difokuskan pada pemberian rekomendasi buku, dengan rating yang mencerminkan kualitas atau tingkat apresiasi pengguna terhadap buku tersebut. Rating 0 dapat berarti rating implisit, sedangkan rating dari 1 hingga 10 menunjukkan tingkat kualitas buku berdasarkan penilaian pengguna.
