@@ -286,7 +286,50 @@ Buku-buku dalam daftar rekomendasi model memiliki genre, penulis atau tema yang 
 Keuntungan *Collaborative Filtering* yaitu : 
 - Dapat merekomendasikan item yang mungkin tidak memiliki fitur yang jelas mirip dengan item yang disukai pengguna sebelumnya.
 - Tidak memerlukan informasi fitur dari item, hanya data interaksi pengguna.
-- Mempertimbangkan perilaku pengguna secara keseluruhan untuk menemukan pola dan kemiripan. 
+- Mempertimbangkan perilaku pengguna secara keseluruhan untuk menemukan pola dan kemiripan.
+
+## 6. Evaluasi 
+
+6.1 Metrik evaluasi Content-Based Filtering : 
+
+1. Precision@k : mengukur berapa banyak item yang direkomendasikan di antara k item teratas yang sebenarnya relevan bagi pengguna, yaitu buku yang disukai pengguna di set pengujian. Rumusnya adalah :
+
+$Precision@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item yang direkomendasikan} (k) . 100% 
+
+2. Recall@k: mengukur berapa banyak item relevan di set pengujian yang berhasil ditangkap oleh rekomendasi k teratas. Rumusnya adalah:
+
+$Recall@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item relevan di set pengujian}
+
+Metrik ini umum digunakan dalam sistem rekomendasi untuk mengukur seberapa baik model dalam memberikan item yang disukai pengguna. Precision@k fokus pada akurasi dari rekomendasi teratas, sementara Recall@k fokus pada kemampuan model untuk menemukan semua item relevan yang mungkin diminati pengguna. 
+
+6.2 Metrik Evaluasi Collaborative Filtering : 
+
+Metrik RMSE (Root Mean Square Error) untuk mengevaluasi kinerja model yang dihasilkan. RMSE merupakan akar kuadrat dari MSE, memberikan skala yang sama dengan variabel target. RMSE memberikan gambaran tentang seberapa dekat prediksi dengan nilai sebenarnya dalam unit yang sama seperti variabel target [[9]](https://www.google.co.id/books/edition/EKSPLORASI_MACHINE_LEARNING_DENGAN_SCIKI/8GsWEQAAQBAJ?hl=id&gbpv=1&dq=definisi+RMSE&pg=PA75&printsec=frontcover). Seperti MSE, semakin rendah nilai RMSE, semakin baik performa modelnya. 
+
+![image](https://github.com/user-attachments/assets/5a0c1e8e-3eda-46b5-baa7-6cf518416313)
+
+Gambar 13 Rumus RMSE 
+
+Berikut merupakan plot metrik RMSE setelah proses pelatihan model.
+
+![image](https://github.com/user-attachments/assets/ea8953d6-5632-4bc9-80b1-a24a953a5aeb)
+
+Gambar 14 Plot RMSE 
+
+Plot di atas menunjukkan bahwa model memiliki skor nilai MSE dari data train 0.291 dan skor nilai MSE dari data validasi 0.923.
+
+## Referensi 
+
+1. ALKAFF, Muhammad; KHATIMI, Husnul; ERIADI, Andi. Sistem Rekomendasi Buku pada Perpustakaan Daerah Provinsi Kalimantan Selatan Menggunakan Metode Content-Based Filtering. MATRIK: Jurnal Manajemen, Teknik Informatika dan Rekayasa Komputer, 2020, 20.1: 193-202.
+2. ARDIANSYAH, Ryky; BIANTO, Mufti Ari; SAPUTRA, Bagus Dwi. Sistem Rekomendasi Buku Perpustakaan Sekolah menggunakan Metode Content-Based Filtering. Jurnal CoSciTech (Computer Science and Information Technology), 2023, 4.2: 510-518.
+3. BIANTO, Mufti Ari; KUSRINI, Kusrini; SUDARMAWAN, Sudarmawan. Perancangan Sistem Klasifikasi Penyakit Jantung Mengunakan Naïve Bayes. Creative Information Technology Journal, 2020, 6.1: 75-83.
+4. REDDY, S. R. S., et al. Content-based movie recommendation system using genre correlation. In: Smart Intelligent Computing and Applications: Proceedings of the Second International Conference on SCI 2018, Volume 2. Springer Singapore, 2019. p. 391-397.
+
+
+
+
+
+
 
 
 
