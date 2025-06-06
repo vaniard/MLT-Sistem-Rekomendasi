@@ -304,7 +304,7 @@ Metrik ini umum digunakan dalam sistem rekomendasi untuk mengukur seberapa baik 
 
 6.2 Metrik Evaluasi Collaborative Filtering : 
 
-Metrik RMSE (Root Mean Square Error) untuk mengevaluasi kinerja model yang dihasilkan. RMSE merupakan akar kuadrat dari MSE, memberikan skala yang sama dengan variabel target. RMSE memberikan gambaran tentang seberapa dekat prediksi dengan nilai sebenarnya dalam unit yang sama seperti variabel target [[9]](https://www.google.co.id/books/edition/EKSPLORASI_MACHINE_LEARNING_DENGAN_SCIKI/8GsWEQAAQBAJ?hl=id&gbpv=1&dq=definisi+RMSE&pg=PA75&printsec=frontcover). Seperti MSE, semakin rendah nilai RMSE, semakin baik performa modelnya. 
+1. Metrik RMSE (Root Mean Square Error) untuk mengevaluasi kinerja model yang dihasilkan. RMSE merupakan akar kuadrat dari MSE, memberikan skala yang sama dengan variabel target. RMSE memberikan gambaran tentang seberapa dekat prediksi dengan nilai sebenarnya dalam unit yang sama seperti variabel target [[9]](https://www.google.co.id/books/edition/EKSPLORASI_MACHINE_LEARNING_DENGAN_SCIKI/8GsWEQAAQBAJ?hl=id&gbpv=1&dq=definisi+RMSE&pg=PA75&printsec=frontcover). Seperti MSE, semakin rendah nilai RMSE, semakin baik performa modelnya. 
 
 ![image](https://github.com/user-attachments/assets/60b3e006-e5ac-4c02-be14-2c22d90397ad)
 
@@ -316,7 +316,16 @@ Berikut merupakan plot metrik RMSE setelah proses pelatihan model.
 
 Gambar 14 Plot RMSE 
 
-Plot di atas menunjukkan bahwa model memiliki skor nilai MSE dari data train 0.291 dan skor nilai MSE dari data validasi 0.923.
+Plot di atas menunjukkan bahwa nilai error akhir yang di dapatkan sekitar 0.30 dan error pada data validasi kurang dari 0.10. Dan nilai ini bisa dibilang cukup bagus untuk sistem rekomendasi. 
+
+2. MSE (Mean Squared Error) merupakan rata-rata dari kuadrat perbedaan antara prediksi dan nilai sebenarnya [[10]](https://www.google.co.id/books/edition/Memahami_Konsep_dan_Implementasi_Machine/_831EAAAQBAJ?hl=id&gbpv=1&dq=definisi+MSE&pg=PA29&printsec=frontcover).
+
+![image](https://github.com/user-attachments/assets/ea7a9e32-c804-4a33-b55e-7e2116968da7)
+
+Gambar 15 Hasil MSE
+
+Berdasarkan gambar di atas MSE dari data train yaitu 0.0292 dan MSE dari data validation yaitu 0.0880.
+
 
 ## Referensi 
 
@@ -327,6 +336,7 @@ Plot di atas menunjukkan bahwa model memiliki skor nilai MSE dari data train 0.2
 5. WIJAYA, Anderias Eko; ALFIAN, Deni. Sistem Rekomendasi Laptop Menggunakan Collaborative Filtering Dan Content-Based Filtering. Jurnal Computech & Bisnis, 2018, 12.1: 11-27.
 6. CHOLIL, Saifur Rohman; RIZKI, Novita Aria; HANIFAH, Trinanda Fajri. Sistem Rekomendasi Tempat Wisata Di Kota Semarang Menggunakan Metode Collaborative Filtering. JIKO (Jurnal Informatika dan Komputer), 2023, 7.1: 118-125.
 7. EKSPLORASI MACHINE LEARNING DENGAN SCIKIT-LEARN Strategi Belajar Machine Learning. (2024). (n.p.): Uwais Inspirasi Indonesia.
+8. Memahami Konsep dan Implementasi Machine Learning. (2024). (n.p.): PT. Sonpedia Publishing Indonesia.
 
 
 
