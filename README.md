@@ -26,9 +26,9 @@ Untuk mengatasi masalah tersebut, peneliti mengusulkan sistem rekomendasi buku m
 
 1. **Content-Based Filtering** merupakan metode yang mempertimbangkan perilaku dari pengguna masa lalu yang kemudian diidentifikasi pola perilakunya untuk merekomendasikan barang yang sesuai dengan pola perilaku tersebut [[4]](https://link.springer.com/chapter/10.1007/978-981-13-1927-3_42). Model akan dicocokkan dengan serangkaian karakteristik atribut dari barang yang akan direkomendasikan. Barang dengan tingkat kecocokan tertinggi akan menjadi rekomendasi untuk pengguna.
 Kelebihan dari *Content-Based Filtering* yaitu [[5]](https://d1wqtxts1xzle7.cloudfront.net/84205803/02-EKO-WIJAYA-libre.pdf?1650030063=&response-content-disposition=inline%3B+filename%3DSistem_Rekomendasi_Laptop_Menggunakan_Co.pdf&Expires=1749066372&Signature=QwbSdVsHpoDNf2r-kHUyoELmKFUew32ZrKQ1QIHfeLPBbsQzfT694rqozpuZrIXVVIIA4ybsJZNHlzPZTXGlDU~XdhVNUYJPhl6lfdhavNQqrQabBVk6FNUCMDDnwg8XZocZuCoSQ72EKLR8XlHgUak62nuOMBUx7gjXjmc80NgavK0HoxOVG3nbS1NAywrQh2DTvtm40TSXNE7ESwxgO27GASK8hNi2jleqVRr--ErJJe4gy9hdKabAo2LG3IU7aPIZBCvkF-Rv5jrcqudIO~l5cwHS-y16qUuJ~EwyoM8WRRHTyTj~3UbrsQzENI09MBHOPikm2UyE14HE9rbKVg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA) : Dapat menjelaskan bagaimana hasil rekomendasi didapatkan dan dapat merekomendasikan item-item yang bahkan belum pernah di-rate oleh siapapun.
-Namun, sistem rekomendasi *Content-Based Filtering* juga memiliki kekurangan yaitu [[6]](https://d1wqtxts1xzle7.cloudfront.net/84205803/02-EKO-WIJAYA-libre.pdf?1650030063=&response-content-disposition=inline%3B+filename%3DSistem_Rekomendasi_Laptop_Menggunakan_Co.pdf&Expires=1749066372&Signature=QwbSdVsHpoDNf2r-kHUyoELmKFUew32ZrKQ1QIHfeLPBbsQzfT694rqozpuZrIXVVIIA4ybsJZNHlzPZTXGlDU~XdhVNUYJPhl6lfdhavNQqrQabBVk6FNUCMDDnwg8XZocZuCoSQ72EKLR8XlHgUak62nuOMBUx7gjXjmc80NgavK0HoxOVG3nbS1NAywrQh2DTvtm40TSXNE7ESwxgO27GASK8hNi2jleqVRr--ErJJe4gy9hdKabAo2LG3IU7aPIZBCvkF-Rv5jrcqudIO~l5cwHS-y16qUuJ~EwyoM8WRRHTyTj~3UbrsQzENI09MBHOPikm2UyE14HE9rbKVg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA) Sistem rekomendasi berbasis kontent ini memerlukan sebuah profil user yang berisikan ketertarikan dan minat pengguna, bagi pengguna baru yang belum pernah melakukan aktivitas apapun dan tidak memiliki profil user yang cukup, sistem rekomendasi tidak dapat memberikan rekomendasi yang handal kepadanya.
+Namun, sistem rekomendasi *Content-Based Filtering* juga memiliki kekurangan yaitu [[6]](https://d1wqtxts1xzle7.cloudfront.net/84205803/02-EKO-WIJAYA-libre.pdf?1650030063=&response-content-disposition=inline%3B+filename%3DSistem_Rekomendasi_Laptop_Menggunakan_Co.pdf&Expires=1749066372&Signature=QwbSdVsHpoDNf2r-kHUyoELmKFUew32ZrKQ1QIHfeLPBbsQzfT694rqozpuZrIXVVIIA4ybsJZNHlzPZTXGlDU~XdhVNUYJPhl6lfdhavNQqrQabBVk6FNUCMDDnwg8XZocZuCoSQ72EKLR8XlHgUak62nuOMBUx7gjXjmc80NgavK0HoxOVG3nbS1NAywrQh2DTvtm40TSXNE7ESwxgO27GASK8hNi2jleqVRr--ErJJe4gy9hdKabAo2LG3IU7aPIZBCvkF-Rv5jrcqudIO~l5cwHS-y16qUuJ~EwyoM8WRRHTyTj~3UbrsQzENI09MBHOPikm2UyE14HE9rbKVg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA) Sistem rekomendasi berbasis konten ini memerlukan sebuah profil user yang berisikan ketertarikan dan minat pengguna, bagi pengguna baru yang belum pernah melakukan aktivitas apapun dan tidak memiliki profil user yang cukup, sistem rekomendasi tidak dapat memberikan rekomendasi yang handal kepadanya.
 
-2. **Collaborative Filtering** memilih data yang bersumber pada kesamaan karakter pengguna untuk memberikan informasi berdasarkan pola kelompok konsumen yang serupa, memungkinkan informasi baru diberikan kepada pengguna [[7]](https://ejournal.akakom.ac.id/index.php/jiko/article/view/727/pdf). *Collaborative Filtering* memiliki beberapa kelebihan yaitu rekomendasi tetap akan bekerja dalam keadaan dimana konten sulit dianlisi sekalipun. Namun metode ini juga memiliki kekurangan yaitu membutuhkan parameter rating, sehingga jika ada item baru sistem tidak akan merekomendasikan item tersebut [[8]](https://d1wqtxts1xzle7.cloudfront.net/84205803/02-EKO-WIJAYA-libre.pdf?1650030063=&response-content-disposition=inline%3B+filename%3DSistem_Rekomendasi_Laptop_Menggunakan_Co.pdf&Expires=1749066372&Signature=QwbSdVsHpoDNf2r-kHUyoELmKFUew32ZrKQ1QIHfeLPBbsQzfT694rqozpuZrIXVVIIA4ybsJZNHlzPZTXGlDU~XdhVNUYJPhl6lfdhavNQqrQabBVk6FNUCMDDnwg8XZocZuCoSQ72EKLR8XlHgUak62nuOMBUx7gjXjmc80NgavK0HoxOVG3nbS1NAywrQh2DTvtm40TSXNE7ESwxgO27GASK8hNi2jleqVRr--ErJJe4gy9hdKabAo2LG3IU7aPIZBCvkF-Rv5jrcqudIO~l5cwHS-y16qUuJ~EwyoM8WRRHTyTj~3UbrsQzENI09MBHOPikm2UyE14HE9rbKVg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA).
+2. **Collaborative Filtering** memilih data yang bersumber pada kesamaan karakter pengguna untuk memberikan informasi berdasarkan pola kelompok konsumen yang serupa, memungkinkan informasi baru diberikan kepada pengguna [[7]](https://ejournal.akakom.ac.id/index.php/jiko/article/view/727/pdf). *Collaborative Filtering* memiliki beberapa kelebihan yaitu rekomendasi tetap akan bekerja dalam keadaan dimana konten sulit dianalisis sekalipun. Namun metode ini juga memiliki kekurangan yaitu membutuhkan parameter rating, sehingga jika ada item baru sistem tidak akan merekomendasikan item tersebut [[8]](https://d1wqtxts1xzle7.cloudfront.net/84205803/02-EKO-WIJAYA-libre.pdf?1650030063=&response-content-disposition=inline%3B+filename%3DSistem_Rekomendasi_Laptop_Menggunakan_Co.pdf&Expires=1749066372&Signature=QwbSdVsHpoDNf2r-kHUyoELmKFUew32ZrKQ1QIHfeLPBbsQzfT694rqozpuZrIXVVIIA4ybsJZNHlzPZTXGlDU~XdhVNUYJPhl6lfdhavNQqrQabBVk6FNUCMDDnwg8XZocZuCoSQ72EKLR8XlHgUak62nuOMBUx7gjXjmc80NgavK0HoxOVG3nbS1NAywrQh2DTvtm40TSXNE7ESwxgO27GASK8hNi2jleqVRr--ErJJe4gy9hdKabAo2LG3IU7aPIZBCvkF-Rv5jrcqudIO~l5cwHS-y16qUuJ~EwyoM8WRRHTyTj~3UbrsQzENI09MBHOPikm2UyE14HE9rbKVg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA).
 
 ## 3. Data Understanding 
 
@@ -115,7 +115,7 @@ Distribusi menunjukkan adanya ekplorasi dan ekspansi besar-besaran di dunia pene
 
 Gambar 8 Histogram Distribusi Usia Pengguna
 
-Distribusi menunjukkan bahwa pengguna didominasi oleh kelompok usia produktif, terutama antara 20 hingga 35 tahun. Hal ini bisa menjadi dasar untuk menyesuaikan strategi pemasaran, desan antarmuka, maupun fitur produk agar lebih sesuai dengan karakteristik usia dominan. 
+Distribusi menunjukkan bahwa pengguna didominasi oleh kelompok usia produktif, terutama antara 20 hingga 35 tahun. Hal ini bisa menjadi dasar untuk menyesuaikan strategi pemasaran, desain antarmuka, maupun fitur produk agar lebih sesuai dengan karakteristik usia dominan. 
 
 ![image](https://github.com/user-attachments/assets/b51ef162-07bd-4606-ae71-ace8c4233ecc)
 
@@ -145,7 +145,7 @@ Data preparation *Content-Based Filtering* :
 5. Membuat Dictionary Baru :
    - List `book_id`, `book_title`, dan `book_author` kemudian digunakan untuk membuat DataFrame baru bernama `new_book`.
    - DataFrame ini memiliki tiga kolom: `id` (untuk ISBN), `book_title`, dan `book_author`.
-   - DataFrame `new_book` ini berisi informasi unik untuk setiap buku yang akan digunakan dalam pembangunan model Content Based Filtering.
+   - DataFrame `new_book` ini berisi informasi unik untuk setiap buku yang akan digunakan dalam pembangunan model *Content-Based Filtering*.
   
 Data preparation Collaborative Filtering : 
 
@@ -173,7 +173,7 @@ Kolom user diisi dengan nilai integer yang di-encode dari kolom `User-ID` menggu
    - Informasi mengenai jumlah pengguna, buku, serta rentang rating dicetak.
 
 6. Normalisasi Rating :
-   - Nilai rating dalam kolom Book-Rating` dinormalisasi ke dalam rentang antara 0 dan 1. Rumus normalisasi yang digunakan adalah: `(x - min_rating)` / `(max_rating - min_rating)`. Normalisasi ini membantu model untuk belajar lebih efektif, terutama dengan fungsi aktivasi sigmoid pada output layer model.
+   - Nilai rating dalam kolom `Book-Rating` dinormalisasi ke dalam rentang antara 0 dan 1. Rumus normalisasi yang digunakan adalah: `(x - min_rating)` / `(max_rating - min_rating)`. Normalisasi ini membantu model untuk belajar lebih efektif, terutama dengan fungsi aktivasi sigmoid pada output layer model.
   
 7. Pembagian Data Training dan Validasi :
    - DataFrame `data` diacak secara acak `(sample(frac=1, random_state=42))` untuk memastikan distribusi data yang merata.
@@ -223,7 +223,7 @@ Gambar 10 Mencari buku-buku oleh 'Peter Carey'
 
 Gambar 11 Rekomendasi buku berdasarkan penulis 'Peter Carey' 
 
-Output dari fungsi gambar diatas menunjukkan bahwa daftar buku yang direkomendasikan kepada pengguna yang menyukai buku dari penulis 'Peter Carey'. Rekomendasi dihasilkan oleh model *Content-Based Filtering* yang bekerja dengan mencari buku-buku lain yang memiliki judul yang paling mirip dengan buku-buku yang ditulis oleh 'Peter Carey'. Dan model berhasil menemukan dan merekomendasikan buku-buku dari penulis lain seperti 'Willian Goldman' yang judulnya memiliki kemiripan tektual dengan buku yang ditulis oleh peter Carey. Daftar rekomendasi ini juga memberikan alternatif bacaan bagi penggemar karya Peter Carey berdasarkan kesamaan dalam judul buku. 
+Output dari fungsi gambar diatas menunjukkan bahwa daftar buku yang direkomendasikan kepada pengguna yang menyukai buku dari penulis 'Peter Carey'. Rekomendasi dihasilkan oleh model *Content-Based Filtering* yang bekerja dengan mencari buku-buku lain yang memiliki judul yang paling mirip dengan buku-buku yang ditulis oleh 'Peter Carey'. Dan model berhasil menemukan dan merekomendasikan buku-buku dari penulis lain seperti 'Willian Goldman' yang judulnya memiliki kemiripan tektual dengan buku yang ditulis oleh Peter Carey. Daftar rekomendasi ini juga memberikan alternatif bacaan bagi penggemar karya Peter Carey berdasarkan kesamaan dalam judul buku. 
 
 Keuntungan *Content-Based Filtering* yaitu :
 - Dapat merekomendasikan item niche yang mungkin tidak diminati oleh banyak pengguna lain.
@@ -252,14 +252,14 @@ Collaborative Filtering merupakan pendekatan dalam sistem rekomendasi yang merek
 3. Pembangunan Model (RecommenderNet) :
    - Mendefinisikan model kustom menggunakan TensorFlow/Keras, bernama RecommenderNet.
    - Model terdiri dari beberapa layer embedding:
-         - `user_embedding` : Layer embedding untuk pengguna. Setiap pengguna diwakili oleh sebuah vektor (embedding) berdimensi `embedding_size`. Ukuran input layer ini adalah jumlah pengguna (`num_users`).
-         - `user_bias` : Layer embedding untuk bias pengguna. Setiap pengguna memiliki sebuah nilai bias skalar. Ukuran input layer ini adalah jumlah pengguna (`num_users`).
-         - `book_embedding` : Layer embedding untuk buku. Setiap buku diwakili oleh sebuah vektor (embedding) berdimensi `embedding_size`. Ukuran input layer ini adalah jumlah buku (`num_book`).
-         - `book_bias` : Layer embedding untuk bias buku. Setiap buku memiliki sebuah nilai bias skalar. Ukuran input layer ini adalah jumlah buku (`num_book`).
-   - `call` : Metode `call` mendefinisikan bagaimana input diproses oleh model.
-         - `tf.tensordot(user_vector, book_vector, 2)` menghitung perkalian dot antara vektor embedding pengguna dan buku. Perkalian dot ini mengukur kompatibilitas antara pengguna dan buku dalam ruang embedding.
-         - `X = dot_user_book + user_bias + book_bias` menggabungkan hasil perkalian dot dengan bias pengguna dan bias buku. Ini menghasilkan prediksi rating sebelum aktivasi.
-         - `tf.nn.sigmoid(X)` menerapkan fungsi aktivasi sigmoid pada hasil. Karena rating dinormalisasi ke [0, 1], sigmoid (yang menghasilkan output dalam rentang [0, 1]) adalah pilihan yang tepat untuk memprediksi rating yang dinormalisasi.
+     1. `user_embedding` : Layer embedding untuk pengguna. Setiap pengguna diwakili oleh sebuah vektor (embedding) berdimensi `embedding_size`. Ukuran input layer ini adalah jumlah pengguna (`num_users`).
+     2. `user_bias` : Layer embedding untuk bias pengguna. Setiap pengguna memiliki sebuah nilai bias skalar. Ukuran input layer ini adalah jumlah pengguna (`num_users`).
+     3. `book_embedding` : Layer embedding untuk buku. Setiap buku diwakili oleh sebuah vektor (embedding) berdimensi `embedding_size`. Ukuran input layer ini adalah jumlah buku (`num_book`).
+     4. `book_bias` : Layer embedding untuk bias buku. Setiap buku memiliki sebuah nilai bias skalar. Ukuran input layer ini adalah jumlah buku (`num_book`).
+     5. `call` : Metode `call` mendefinisikan bagaimana input diproses oleh model.
+     6. `tf.tensordot(user_vector, book_vector, 2)` menghitung perkalian dot antara vektor embedding pengguna dan buku. Perkalian dot ini mengukur kompatibilitas antara pengguna dan buku dalam ruang embedding.
+     7. `X = dot_user_book + user_bias + book_bias` menggabungkan hasil perkalian dot dengan bias pengguna dan bias buku. Ini menghasilkan prediksi rating sebelum aktivasi.
+     8. `tf.nn.sigmoid(X)` menerapkan fungsi aktivasi sigmoid pada hasil. Karena rating dinormalisasi ke [0, 1], sigmoid (yang menghasilkan output dalam rentang [0, 1]) adalah pilihan yang tepat untuk memprediksi rating yang dinormalisasi.
 
 4. Kompilasi Model :
    - `loss = tf.keras.losses.BinaryCrossentropy()` : Binary Crossentropy digunakan karena output model adalah nilai antara 0 dan 1 (setelah sigmoid) yang dapat diinterpretasikan sebagai probabilitas atau skor kecocokan. Ini merupakan pendekatan umum dalam sistem rekomendasi berbasis embedding.
@@ -294,11 +294,11 @@ Keuntungan *Collaborative Filtering* yaitu :
 
 1. Precision@k : mengukur berapa banyak item yang direkomendasikan di antara k item teratas yang sebenarnya relevan bagi pengguna, yaitu buku yang disukai pengguna di set pengujian. Rumusnya adalah :
 
-$Precision@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item yang direkomendasikan} (k) . 100% 
+   $Precision@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item yang direkomendasikan} (k) . 100% 
 
 2. Recall@k: mengukur berapa banyak item relevan di set pengujian yang berhasil ditangkap oleh rekomendasi k teratas. Rumusnya adalah:
 
-$Recall@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item relevan di set pengujian}
+   $Recall@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item relevan di set pengujian}
 
 Metrik ini umum digunakan dalam sistem rekomendasi untuk mengukur seberapa baik model dalam memberikan item yang disukai pengguna. Precision@k fokus pada akurasi dari rekomendasi teratas, sementara Recall@k fokus pada kemampuan model untuk menemukan semua item relevan yang mungkin diminati pengguna. 
 
@@ -312,7 +312,7 @@ Gambar 13 Rumus RMSE
 
 Berikut merupakan plot metrik RMSE setelah proses pelatihan model.
 
-![image](https://github.com/user-attachments/assets/ea8953d6-5632-4bc9-80b1-a24a953a5aeb)
+![image](https://github.com/user-attachments/assets/c0a4e6e8-0cf4-4870-a584-9aab2e7af24b)
 
 Gambar 14 Plot RMSE 
 
