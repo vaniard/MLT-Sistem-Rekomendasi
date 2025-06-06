@@ -180,6 +180,119 @@ Kolom user diisi dengan nilai integer yang di-encode dari kolom `User-ID` menggu
    - Data fitur `(X)` dibuat dari kolom `user dan book`, dan data target `(y)` dibuat dari kolom `Book-Rating` yang sudah dinormalisasi.
    - Data kemudian dibagi menjadi set pelatihan (80%) dan set validasi (20%) berdasarkan indeks. `X_train`, `y_train` untuk pelatihan, dan `X_val`, `y_val` untuk validasi.
 
+## 5. Modeling 
+
+Algoritma yang digunakan untuk menyelesaikan permasalahan serta menyajikan top-N recommendation sebagai solusi yaitu menggunakan algoritma *Content-Based Filtering* dan *Collaborative Filtering*. 
+
+**Tujuan Content Based Filtering**
+
+Content Based Filtering merupakan salah satu pendekatan dalam sistem rekomendasi yang merekomendasikan item kepada pengguna menggunakan fitur-fitur dari item itu sendiri. Ide dasarnya ialah jika seorang pengguna menyukai sebuah item dengan karakteristik tertentu, kemungkinan besar mereka juga akan menyukai item lain dengan karakteristik serupa. 
+
+**Langkah-langkah dalam Model Development**
+
+1. Pemilihan Fitur :
+   - Fitur yang digunakan untuk *Content-Based Filtering* adalah `Book-Title`. Ini berarti model akan mencari kemiripan antara buku berdasarkan judulnya.
+   - Kemudian menghapus fitur gambar (Image-URL-S, Image-URL-M, Image-URL-L).
+2. Representasi Teks dengan TF-IDF :
+   - Judul buku merupakan data teks, dan machine learning model membutuhkan data numerik. TF-IDF merupakan teknik yang digunakan untuk mengubah teks menjadi representasi numerik.
+   - Menggunakan `TfidfVectorizer()` dari scikit-learn.
+   - `tf.fit(new_book['book_title'])` mempelajari kosakata dari judul buku.
+   - `tf.get_feature_names_out()` menampilkan kata-kata yang dipertimbangkan.
+   - `tfidf_matrix = tf.fit_transform(new_book['book_title'])` mengubah judul buku menjadi matriks TF-IDF. Ukuran matriks menunjukkan jumlah buku dan jumlah kata unik yang digunakan sebagai fitur.
+   - `tfidf_matrix.todense()` mengubah matriks TF-IDF yang tadinya dalam format sparse menjadi format dense (matriks biasa).
+   - Membuat DataFrame dari matriks TF-IDF untuk melihat representasi numerik dari beberapa judul buku.
+3. Mengukur Kemiripan dengan Cosine Similarity :
+   - Setelah judul buku direpresentasikan sebagai vektor numerik, kemudian perlu mengukur seberapa mirip satu buku dengan buku lainnya.
+   - Menggunakan `cosine_similarity(tfidf_matrix)` dari scikit-learn untuk menghitung matriks kemiripan antar semua pasangan buku berdasarkan matriks TF-IDF.
+   - Matriks `cosine_similar` memiliki ukuran (jumlah buku) x (jumlah buku), di mana setiap elemen (i, j) adalah skor kemiripan antara buku i dan buku j.
+   - Membuat DataFrame `df_cosine_similar` dari matriks kemiripan, dengan baris dan kolom diindeks oleh penulis buku untuk memudahkan interpretasi meskipun kemiripan dihitung berdasarkan judul buku.
+4. Menghasilkan Rekomendasi :
+   - Fungsi `book_recommendations` dibuat untuk menghasilkan rekomendasi.
+   - Fungsi ini mengambil nama penulis (`author_name`), matriks kemiripan (`data_similarity`), DataFrame item (`items` yang berisi penulis dan judul buku), dan jumlah rekomendasi yang diinginkan (n) sebagai input.
+   - `data_similarity.loc[:, author_name].to_numpy().argpartition(range(-1, -n, -1))` menemukan indeks dari `n` buku yang paling mirip dengan buku yang ditulis oleh `author_name`. `argpartition` efisien untuk menemukan indeks nilai terbesar tanpa mengurutkan seluruh array.
+   - `closest = data_similarity.columns[index[-1:-(n+2):-1]]` mendapatkan nama penulis dari buku-buku yang paling mirip.
+   - `closest = closest.drop(author_name, errors='ignore')` menghapus buku yang ditulis oleh penulis yang sama dari daftar rekomendasi, agar tidak merekomendasikan buku yang sudah dikenal pengguna (atau penulis yang sama).
+   - Terakhir, `pd.DataFrame(closest).merge(items).head(n)` menggabungkan daftar penulis buku yang direkomendasikan dengan DataFrame `new_book` untuk mendapatkan judul buku yang sesuai dan menampilkan n rekomendasi teratas.
+   - Kemudian menguji fungsi dengan mencari buku-buku oleh 'Peter Carey' dan kemudian mendapatkan rekomendasi berdasarkan penulis tersebut.
+
+![image](https://github.com/user-attachments/assets/6b2fa6b5-7410-4369-b901-58b37bd7bbb6)
+
+Gambar 10 Mencari buku-buku oleh 'Peter Carey' 
+
+![image](https://github.com/user-attachments/assets/ed72122b-d993-42a5-ab7e-229cda431ec8)
+
+Gambar 11 Rekomendasi buku berdasarkan penulis 'Peter Carey' 
+
+Output dari fungsi gambar diatas menunjukkan bahwa daftar buku yang direkomendasikan kepada pengguna yang menyukai buku dari penulis 'Peter Carey'. Rekomendasi dihasilkan oleh model *Content-Based Filtering* yang bekerja dengan mencari buku-buku lain yang memiliki judul yang paling mirip dengan buku-buku yang ditulis oleh 'Peter Carey'. Dan model berhasil menemukan dan merekomendasikan buku-buku dari penulis lain seperti 'Willian Goldman' yang judulnya memiliki kemiripan tektual dengan buku yang ditulis oleh peter Carey. Daftar rekomendasi ini juga memberikan alternatif bacaan bagi penggemar karya Peter Carey berdasarkan kesamaan dalam judul buku. 
+
+Keuntungan *Content-Based Filtering* yaitu :
+- Dapat merekomendasikan item niche yang mungkin tidak diminati oleh banyak pengguna lain.
+- Dapat merekomendasikan item baru dengan cepat setelah tersedia, karena fitur-fiturnya sudah ada. 
+
+**Tujuan Collaborative Filtering**
+
+Collaborative Filtering merupakan pendekatan dalam sistem rekomendasi yang merekomendasikan item kepada pengguna berdasarkan preferensi atau perilaku pengguna lain yang serupa. Ide dasarnya ialah jika pengguna A memiliki preferensi yang mirip dengan pengguna B, maka item yang disukai oleh pengguna B yang belum pernah dilihat oleh pengguna A, kemungkinan besar juga akan disukai oleh pengguna A. 
+
+**Langkah-langkah dalam Model Development** 
+
+1. Pemilihan Data :
+   - Menggunakan dataset `ratings`, yang berisi interaksi pengguna dengan buku dalam bentuk rating (`User-ID`, `ISBN`, `Book-Rating`). Ini adalah data kunci untuk Collaborative Filtering karena menunjukkan preferensi pengguna.
+
+2. Data Preparation :
+   - Encoding ID: Melakukan encoding untuk `User-ID` dan `ISBN` menjadi indeks numerik berurutan (mulai dari 0).
+        - `users_encoded` : Mapping dari `User-ID` asli ke indeks numerik.
+        - `users_encoded_to_user` : Mapping dari indeks numerik kembali ke `User-ID` asli.
+        - `books_to_book_encoded` : Mapping dari `ISBN` asli ke indeks numerik.
+        - `books_encoded_to_book` : Mapping dari indeks numerik kembali ke `ISBN` asli.
+        - Menambahkan kolom baru `'user'` dan `'book'` ke DataFrame data yang berisi ID yang sudah di-encode.
+   - Jumlah Pengguna dan Buku : Menghitung jumlah pengguna dan buku unik setelah encoding. Untuk mendefinisikan ukuran layer embedding dalam model.
+   - Normalisasi Rating : Rating (`Book-Rating`) dinormalisasi ke dalam rentang [0, 1] menggunakan skala minimum dan maksimum rating yang ditemukan dalam data. Normalisasi ini membantu model untuk belajar lebih efektif, terutama saat menggunakan fungsi aktivasi sigmoid pada output.
+   - Pemecahan Data : Membagi data yang sudah disiapkan menjadi set training (`X_train, y_train`) dan set validasi (`X_val, y_val`). Data diacak (`data.sample(frac=1, random_state=42`)) sebelum dibagi untuk memastikan distribusi yang baik. Input X terdiri dari pasangan (`user` yang di-encode, `book` yang di-encode), dan target `y` merupakan rating yang dinormalisasi.
+
+3. Pembangunan Model (RecommenderNet) :
+   - Mendefinisikan model kustom menggunakan TensorFlow/Keras, bernama RecommenderNet.
+   - Model terdiri dari beberapa layer embedding:
+         - `user_embedding` : Layer embedding untuk pengguna. Setiap pengguna diwakili oleh sebuah vektor (embedding) berdimensi `embedding_size`. Ukuran input layer ini adalah jumlah pengguna (`num_users`).
+         - `user_bias` : Layer embedding untuk bias pengguna. Setiap pengguna memiliki sebuah nilai bias skalar. Ukuran input layer ini adalah jumlah pengguna (`num_users`).
+         - `book_embedding` : Layer embedding untuk buku. Setiap buku diwakili oleh sebuah vektor (embedding) berdimensi `embedding_size`. Ukuran input layer ini adalah jumlah buku (`num_book`).
+         - `book_bias` : Layer embedding untuk bias buku. Setiap buku memiliki sebuah nilai bias skalar. Ukuran input layer ini adalah jumlah buku (`num_book`).
+   - `call` : Metode `call` mendefinisikan bagaimana input diproses oleh model.
+         - `tf.tensordot(user_vector, book_vector, 2)` menghitung perkalian dot antara vektor embedding pengguna dan buku. Perkalian dot ini mengukur kompatibilitas antara pengguna dan buku dalam ruang embedding.
+         - `X = dot_user_book + user_bias + book_bias` menggabungkan hasil perkalian dot dengan bias pengguna dan bias buku. Ini menghasilkan prediksi rating sebelum aktivasi.
+         - `tf.nn.sigmoid(X)` menerapkan fungsi aktivasi sigmoid pada hasil. Karena rating dinormalisasi ke [0, 1], sigmoid (yang menghasilkan output dalam rentang [0, 1]) adalah pilihan yang tepat untuk memprediksi rating yang dinormalisasi.
+
+4. Kompilasi Model :
+   - `loss = tf.keras.losses.BinaryCrossentropy()` : Binary Crossentropy digunakan karena output model adalah nilai antara 0 dan 1 (setelah sigmoid) yang dapat diinterpretasikan sebagai probabilitas atau skor kecocokan. Ini merupakan pendekatan umum dalam sistem rekomendasi berbasis embedding.
+   - `optimizer = keras.optimizers.Adam(learning_rate=0.001)` : Optimizer Adam digunakan untuk memperbarui bobot model selama pelatihan.
+   - `metrics=[tf.keras.metrics.RootMeanSquaredError()]` : RMSE digunakan sebagai metrik evaluasi selama pelatihan untuk mengukur seberapa besar perbedaan antara rating prediksi dan rating sebenarnya.
+
+5. Pelatihan Model :
+   - `history = model.fit(...)` melatih model menggunakan data training (`X_train, y_train`) dan memvalidasinya pada data validasi (`X_val, y_val`) selama 100 epoch dengan ukuran batch 8.
+
+6. Mendapatkan Rekomendasi :
+   - Mengidentifikasi buku-buku yang belum pernah dilihat oleh pengguna (`book_not_visited`).
+   - Untuk setiap buku yang belum dilihat, membuat pasangan input (`user_encoder`, `book_encoder`) dan menggabungkannya menjadi array (`user_book_array`).
+   - `rating = model.predict(user_book_array).flatten()` menggunakan model yang sudah dilatih untuk memprediksi rating yang dinormalisasi yang mungkin diberikan pengguna untuk setiap buku yang belum dilihat. `flatten()` mengubah output menjadi array 1D.
+   - `top_rating_indices = rating.argsort()[-10:][::-1]` mendapatkan indeks dari 10 rating prediksi tertinggi.
+   - `recommended_book_ids = [...]` mengonversi kembali indeks buku yang di-encode menjadi `ISBN` asli.
+   - Kemudian menampilkan buku-buku yang paling sering diberi rating tinggi oleh pengguna tersebut (berdasarkan data history) dan membandingkannya dengan 10 buku yang direkomendasikan oleh model *Collaborative Filtering*.
+
+![image](https://github.com/user-attachments/assets/bda3c2a7-29ac-4d5e-aa21-20a10133a73c)
+
+Gambar 12 10 Rekomendasi Teratas berdasarkan Book Author
+
+Buku-buku dalam daftar rekomendasi model memiliki genre, penulis atau tema yang mirip dengan buku-buku yang disukai pengguna di masa lalu, hal ini menunjukkan bahwa model telah berhasil mempelajari pola preferensi pengguna dan merekomendasikan buku-buku yang relevan. Dan output tersebut menunjukkan rekomendasi berdasarkan Book Author dan Book Title. 
+
+Keuntungan *Collaborative Filtering* yaitu : 
+- Dapat merekomendasikan item yang mungkin tidak memiliki fitur yang jelas mirip dengan item yang disukai pengguna sebelumnya.
+- Tidak memerlukan informasi fitur dari item, hanya data interaksi pengguna.
+- Mempertimbangkan perilaku pengguna secara keseluruhan untuk menemukan pola dan kemiripan. 
+
+
+
+
+
+
 
 
 
