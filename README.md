@@ -127,22 +127,64 @@ Berdasarkan diagram diatas sebagian besar buku kemungkinan belum diberi rating. 
 
 Data preparation *Content-Based Filtering* : 
 
-1. Mengatasi Missing Value :
+1. Mengurangi Entitas Variabel :
+   - `books` :
+     
+     a. Dataset `books` asli memiliki 271.360 entri.
+     
+     b. Baris kode yang digunakan adalah : `books = books[1:7001]`
+     
+     c. Kode ini memilih slice dari dataframe `books. [1:7001]` berarti mengambil          baris dari indeks 1 hingga indeks 7000.
+     
+     d. Setelah baris ini dieksekusi, variabel books sekarang hanya berisi 7000            baris data buku.
+     
+     e. Kode `books.info()` dijalankan setelahnya untuk memverifikasi bahwa jumlah           entri pada dataframe books telah berkurang menjadi 7000.
+     
+   - `users` :
+     
+     a. Dataset `users` asli memiliki 278858 entri.
+     
+     b. Baris kode yang digunakan adalah : `users = users[1:7001]`
+     
+     c. Kode ini mengambil slice dari dataframe `users` dari indeks 1 hingga 7000.
+     
+     d. Setelah baris ini dieksekusi, variabel `users` sekarang hanya berisi 7000          baris data pengguna.
+     
+     e. Kode `users.info()` dijalankan setelahnya untuk memverifikasi bahwa jumlah         entri pada dataframe users telah berkurang menjadi 7000.
+     
+   - `ratings` :
+     
+     a. Dataset `ratings` asli memiliki lebih dari 11 juta entri.
+     
+     b. Baris kode yang digunakan adalah: `ratings = ratings[1:7001]`
+     
+     c. Kode ini mengambil slice dari dataframe `ratings` dari indeks 1 hingga             7000.
+     
+     d. Setelah baris ini dieksekusi, variabel `ratings` sekarang hanya berisi             7000 baris data rating.
+     
+     e. Kode `ratings.info()` dan `ratings.describe()` dijalankan setelahnya untuk         memverifikasi jumlah entri dan melihat statistik deskriptif dari data              rating yang sudah diperkecil.
+     
+3. Menghapus fitur gambar (Image-URL-S, Image-URL-M, Image-URL-L) :
+   - books.drop(): Ini adalah fungsi pandas yang digunakan untuk menghapus baris        atau kolom dari DataFrame.
+   - columns=['Image-URL-S', 'Image-URL-M', 'Image-URL-L']: Ini menentukan kolom         mana yang ingin dihapus.
+   - axis=1: Ini menunjukkan bahwa kita ingin menghapus kolom (jika axis=0, itu          akan menghapus baris).
+   
+5. Mengatasi Missing Value :
    - Setelah menggabungkan dataset `ratings` dengan informasi buku dari dataset `books`, muncul nilai yang hilang (missing value) pada kolom `Book-Title` dan `Book-Author`.
    - Untuk menangani missing value ini, kode menggunakan metode `dropna()` pada DataFrame `books_all`. Metode ini akan menghapus baris-baris yang mengandung nilai yang hilang.
    - Pengecekan ulang missing value dilakukan setelah menggunakan `dropna()` untuk memastikan tidak ada lagi missing value.
      
-2. Mengurutkan Data :
+6. Mengurutkan Data :
    - Data pada DataFrame yang sudah dibersihkan dari missing value `books_all_clean` diurutkan berdasarkan kolom `ISBN` secara menaik `ascending=True`. Hasil pengurutan ini disimpan dalam DataFrame baru bernama `preparation`.
 
-3. Mengatasi Data Duplikat :
+7. Mengatasi Data Duplikat :
    - Setelah diurutkan, terdapat kemungkinan adanya data duplikat berdasarkan `ISBN`. Kode menggunakan metode `drop_duplicates('ISBN')` pada DataFrame `preparation` untuk menghapus baris-baris yang memiliki nilai ISBN yang sama, sehingga setiap buku hanya muncul sekali.
 
-4. Konversi Data Series Menjadi List :
+8. Konversi Data Series Menjadi List :
    - Kolom `ISBN`, `Book-Title`, dan `Book-Author` dari DataFrame `preparation` yang sudah bersih dan unik dikonversi menjadi list Python. Ini dilakukan untuk memudahkan akses dan penggunaan data dalam pembuatan model rekomendasi.
    - Panjang dari setiap list (jumlah `Book ID`, `Book Title`, dan `Book Author`) dicetak untuk memastikan jumlah data konsisten.
   
-5. Membuat Dictionary Baru :
+9. Membuat Dictionary Baru :
    - List `book_id`, `book_title`, dan `book_author` kemudian digunakan untuk membuat DataFrame baru bernama `new_book`.
    - DataFrame ini memiliki tiga kolom: `id` (untuk ISBN), `book_title`, dan `book_author`.
    - DataFrame `new_book` ini berisi informasi unik untuk setiap buku yang akan digunakan dalam pembangunan model *Content-Based Filtering*.
