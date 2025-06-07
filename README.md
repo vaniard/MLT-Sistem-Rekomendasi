@@ -164,27 +164,36 @@ Data preparation *Content-Based Filtering* :
      
      e. Kode `ratings.info()` dan `ratings.describe()` dijalankan setelahnya untuk         memverifikasi jumlah entri dan melihat statistik deskriptif dari data              rating yang sudah diperkecil.
      
-3. Menghapus fitur gambar (Image-URL-S, Image-URL-M, Image-URL-L) :
+2. Menghapus fitur gambar (Image-URL-S, Image-URL-M, Image-URL-L) :
    - books.drop(): Ini adalah fungsi pandas yang digunakan untuk menghapus baris        atau kolom dari DataFrame.
    - columns=['Image-URL-S', 'Image-URL-M', 'Image-URL-L']: Ini menentukan kolom         mana yang ingin dihapus.
    - axis=1: Ini menunjukkan bahwa kita ingin menghapus kolom (jika axis=0, itu          akan menghapus baris).
    
-5. Mengatasi Missing Value :
+3. Representasi Teks dengan TF-IDF :
+   - Judul buku merupakan data teks, dan machine learning model membutuhkan data numerik. TF-IDF merupakan teknik yang digunakan untuk mengubah teks menjadi representasi numerik.
+   - Menggunakan `TfidfVectorizer()` dari scikit-learn.
+   - `tf.fit(new_book['book_title'])` mempelajari kosakata dari judul buku.
+   - `tf.get_feature_names_out()` menampilkan kata-kata yang dipertimbangkan.
+   - `tfidf_matrix = tf.fit_transform(new_book['book_title'])` mengubah judul buku menjadi matriks TF-IDF. Ukuran matriks menunjukkan jumlah buku dan jumlah kata unik yang digunakan sebagai fitur.
+   - `tfidf_matrix.todense()` mengubah matriks TF-IDF yang tadinya dalam format sparse menjadi format dense (matriks biasa).
+   - Membuat DataFrame dari matriks TF-IDF untuk melihat representasi numerik dari beberapa judul buku.
+     
+4. Mengatasi Missing Value :
    - Setelah menggabungkan dataset `ratings` dengan informasi buku dari dataset `books`, muncul nilai yang hilang (missing value) pada kolom `Book-Title` dan `Book-Author`.
    - Untuk menangani missing value ini, kode menggunakan metode `dropna()` pada DataFrame `books_all`. Metode ini akan menghapus baris-baris yang mengandung nilai yang hilang.
    - Pengecekan ulang missing value dilakukan setelah menggunakan `dropna()` untuk memastikan tidak ada lagi missing value.
      
-6. Mengurutkan Data :
+5. Mengurutkan Data :
    - Data pada DataFrame yang sudah dibersihkan dari missing value `books_all_clean` diurutkan berdasarkan kolom `ISBN` secara menaik `ascending=True`. Hasil pengurutan ini disimpan dalam DataFrame baru bernama `preparation`.
 
-7. Mengatasi Data Duplikat :
+6. Mengatasi Data Duplikat :
    - Setelah diurutkan, terdapat kemungkinan adanya data duplikat berdasarkan `ISBN`. Kode menggunakan metode `drop_duplicates('ISBN')` pada DataFrame `preparation` untuk menghapus baris-baris yang memiliki nilai ISBN yang sama, sehingga setiap buku hanya muncul sekali.
 
-8. Konversi Data Series Menjadi List :
+7. Konversi Data Series Menjadi List :
    - Kolom `ISBN`, `Book-Title`, dan `Book-Author` dari DataFrame `preparation` yang sudah bersih dan unik dikonversi menjadi list Python. Ini dilakukan untuk memudahkan akses dan penggunaan data dalam pembuatan model rekomendasi.
    - Panjang dari setiap list (jumlah `Book ID`, `Book Title`, dan `Book Author`) dicetak untuk memastikan jumlah data konsisten.
   
-9. Membuat Dictionary Baru :
+8. Membuat Dictionary Baru :
    - List `book_id`, `book_title`, dan `book_author` kemudian digunakan untuk membuat DataFrame baru bernama `new_book`.
    - DataFrame ini memiliki tiga kolom: `id` (untuk ISBN), `book_title`, dan `book_author`.
    - DataFrame `new_book` ini berisi informasi unik untuk setiap buku yang akan digunakan dalam pembangunan model *Content-Based Filtering*.
