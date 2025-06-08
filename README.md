@@ -342,7 +342,7 @@ Parameter yang Digunakan :
 - `epochs=100` : Jumlah iterasi penuh melalui seluruh dataset pelatihan.
 - Validation Data (`validation_data = (X_val, y_val`)): Data yang digunakan untuk mengevaluasi kinerja model setelah setiap epoch dan memantau overfitting.
 
-![image](https://github.com/user-attachments/assets/bda3c2a7-29ac-4d5e-aa21-20a10133a73c)
+![image](https://github.com/user-attachments/assets/2bb21a39-4c2d-46ed-bf8b-434b6c423b0e)
 
 Gambar 12 10 Rekomendasi Teratas berdasarkan Book Author
 
