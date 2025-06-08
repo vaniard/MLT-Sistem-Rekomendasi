@@ -142,7 +142,7 @@ Data preparation *Content-Based Filtering* :
      
    - `users` :
      
-     a. Dataset `users` asli memiliki 278858 entri.
+     a. Dataset `users` asli memiliki 278.858 entri.
      
      b. Baris kode yang digunakan adalah : `users = users[1:7001]`
      
@@ -264,7 +264,8 @@ Parameter yang Digunakan :
    - `author_name` : Nama penulis sebagai input untuk mencari rekomendasi.
    - `data_similarity` : DataFrame kemiripan konsinus.
    - `items` : DataFrame yang berisi `book_author` dan `book_title`.
-   - `n=10` : Jumlah rekomendasi teratas yang akan ditampilkan. 
+   - `n=10` : Jumlah rekomendasi teratas yang akan ditampilkan.
+     
      
 ![image](https://github.com/user-attachments/assets/164e8c26-79d3-4b05-a681-31dbf3939ef6)
 
@@ -329,6 +330,7 @@ Collaborative Filtering merupakan pendekatan dalam sistem rekomendasi yang merek
    - Kemudian menampilkan buku-buku yang paling sering diberi rating tinggi oleh pengguna tersebut (berdasarkan data history) dan membandingkannya dengan 10 buku yang direkomendasikan oleh model *Collaborative Filtering*.
   
 Parameter yang Digunakan : 
+
 2. `RecommenderNet` class :
 - `num_users` : Jumlah total pengguna unik dalam dataset.
 - `num_book` : Jumlah total buku unik dalam dataset.
