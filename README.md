@@ -134,11 +134,11 @@ Data preparation *Content-Based Filtering* :
      
      b. Baris kode yang digunakan adalah : `books = books[1:7001]`
      
-     c. Kode ini memilih slice dari dataframe `books. [1:7001]` berarti mengambil          baris dari indeks 1 hingga indeks 7000.
+     c. Kode ini memilih slice dari dataframe `books. [1:7001]` berarti mengambil baris dari indeks 1 hingga indeks 7000.
      
-     d. Setelah baris ini dieksekusi, variabel books sekarang hanya berisi 7000            baris data buku.
+     d. Setelah baris ini dieksekusi, variabel books sekarang hanya berisi 7000 baris data buku.
      
-     e. Kode `books.info()` dijalankan setelahnya untuk memverifikasi bahwa jumlah           entri pada dataframe books telah berkurang menjadi 7000.
+     e. Kode `books.info()` dijalankan setelahnya untuk memverifikasi bahwa jumlah entri pada dataframe books telah berkurang menjadi 7000.
      
    - `users` :
      
@@ -148,9 +148,9 @@ Data preparation *Content-Based Filtering* :
      
      c. Kode ini mengambil slice dari dataframe `users` dari indeks 1 hingga 7000.
      
-     d. Setelah baris ini dieksekusi, variabel `users` sekarang hanya berisi 7000          baris data pengguna.
+     d. Setelah baris ini dieksekusi, variabel `users` sekarang hanya berisi 7000 baris data pengguna.
      
-     e. Kode `users.info()` dijalankan setelahnya untuk memverifikasi bahwa jumlah         entri pada dataframe users telah berkurang menjadi 7000.
+     e. Kode `users.info()` dijalankan setelahnya untuk memverifikasi bahwa jumlah entri pada dataframe users telah berkurang menjadi 7000.
      
    - `ratings` :
      
@@ -158,23 +158,23 @@ Data preparation *Content-Based Filtering* :
      
      b. Baris kode yang digunakan adalah: `ratings = ratings[1:7001]`
      
-     c. Kode ini mengambil slice dari dataframe `ratings` dari indeks 1 hingga             7000.
+     c. Kode ini mengambil slice dari dataframe `ratings` dari indeks 1 hingga 7000.
      
-     d. Setelah baris ini dieksekusi, variabel `ratings` sekarang hanya berisi             7000 baris data rating.
+     d. Setelah baris ini dieksekusi, variabel `ratings` sekarang hanya berisi 7000 baris data rating.
      
-     e. Kode `ratings.info()` dan `ratings.describe()` dijalankan setelahnya untuk         memverifikasi jumlah entri dan melihat statistik deskriptif dari data              rating yang sudah diperkecil.
+     e. Kode `ratings.info()` dan `ratings.describe()` dijalankan setelahnya untuk memverifikasi jumlah entri dan melihat statistik deskriptif dari data rating yang sudah diperkecil.
      
 2. Menghapus fitur gambar (Image-URL-S, Image-URL-M, Image-URL-L) :
-   - books.drop(): Ini adalah fungsi pandas yang digunakan untuk menghapus baris        atau kolom dari DataFrame.
-   - columns=['Image-URL-S', 'Image-URL-M', 'Image-URL-L']: Ini menentukan kolom         mana yang ingin dihapus.
-   - axis=1: Ini menunjukkan bahwa kita ingin menghapus kolom (jika axis=0, itu          akan menghapus baris).
+   - `books.drop()` : Ini adalah fungsi pandas yang digunakan untuk menghapus baris atau kolom dari DataFrame.
+   - `columns = ['Image-URL-S', 'Image-URL-M', 'Image-URL-L']` : Ini menentukan kolom mana yang ingin dihapus.
+   - `axis=1` : Ini menunjukkan bahwa kita ingin menghapus kolom (jika `axis=0`, itu akan menghapus baris).
    
 3. Representasi Teks dengan TF-IDF :
    - Judul buku merupakan data teks, dan machine learning model membutuhkan data numerik. TF-IDF merupakan teknik yang digunakan untuk mengubah teks menjadi representasi numerik.
    - Menggunakan `TfidfVectorizer()` dari scikit-learn.
    - `tf.fit(new_book['book_title'])` mempelajari kosakata dari judul buku.
    - `tf.get_feature_names_out()` menampilkan kata-kata yang dipertimbangkan.
-   - `tfidf_matrix = tf.fit_transform(new_book['book_title'])` mengubah judul buku menjadi matriks TF-IDF. Ukuran matriks menunjukkan jumlah buku dan jumlah kata unik yang digunakan sebagai fitur.
+   - `tfidf_matrix = tf.fit_transform(new_book['book_title'])` mengubah judul buku menjadi matriks TF-IDF. Ukuran matriks menunjukkan jumlah buku dan jumlah kata unik yang digunakan          sebagai fitur.
    - `tfidf_matrix.todense()` mengubah matriks TF-IDF yang tadinya dalam format sparse menjadi format dense (matriks biasa).
    - Membuat DataFrame dari matriks TF-IDF untuk melihat representasi numerik dari beberapa judul buku.
      
@@ -243,21 +243,12 @@ Content Based Filtering merupakan salah satu pendekatan dalam sistem rekomendasi
 
 1. Pemilihan Fitur :
    - Fitur yang digunakan untuk *Content-Based Filtering* adalah `Book-Title`. Ini berarti model akan mencari kemiripan antara buku berdasarkan judulnya.
-   - Kemudian menghapus fitur gambar (Image-URL-S, Image-URL-M, Image-URL-L).
-2. Representasi Teks dengan TF-IDF :
-   - Judul buku merupakan data teks, dan machine learning model membutuhkan data numerik. TF-IDF merupakan teknik yang digunakan untuk mengubah teks menjadi representasi numerik.
-   - Menggunakan `TfidfVectorizer()` dari scikit-learn.
-   - `tf.fit(new_book['book_title'])` mempelajari kosakata dari judul buku.
-   - `tf.get_feature_names_out()` menampilkan kata-kata yang dipertimbangkan.
-   - `tfidf_matrix = tf.fit_transform(new_book['book_title'])` mengubah judul buku menjadi matriks TF-IDF. Ukuran matriks menunjukkan jumlah buku dan jumlah kata unik yang digunakan sebagai fitur.
-   - `tfidf_matrix.todense()` mengubah matriks TF-IDF yang tadinya dalam format sparse menjadi format dense (matriks biasa).
-   - Membuat DataFrame dari matriks TF-IDF untuk melihat representasi numerik dari beberapa judul buku.
-3. Mengukur Kemiripan dengan Cosine Similarity :
+2. Mengukur Kemiripan dengan Cosine Similarity :
    - Setelah judul buku direpresentasikan sebagai vektor numerik, kemudian perlu mengukur seberapa mirip satu buku dengan buku lainnya.
    - Menggunakan `cosine_similarity(tfidf_matrix)` dari scikit-learn untuk menghitung matriks kemiripan antar semua pasangan buku berdasarkan matriks TF-IDF.
    - Matriks `cosine_similar` memiliki ukuran (jumlah buku) x (jumlah buku), di mana setiap elemen (i, j) adalah skor kemiripan antara buku i dan buku j.
    - Membuat DataFrame `df_cosine_similar` dari matriks kemiripan, dengan baris dan kolom diindeks oleh penulis buku untuk memudahkan interpretasi meskipun kemiripan dihitung berdasarkan judul buku.
-4. Menghasilkan Rekomendasi :
+3. Menghasilkan Rekomendasi :
    - Fungsi `book_recommendations` dibuat untuk menghasilkan rekomendasi.
    - Fungsi ini mengambil nama penulis (`author_name`), matriks kemiripan (`data_similarity`), DataFrame item (`items` yang berisi penulis dan judul buku), dan jumlah rekomendasi yang diinginkan (n) sebagai input.
    - `data_similarity.loc[:, author_name].to_numpy().argpartition(range(-1, -n, -1))` menemukan indeks dari `n` buku yang paling mirip dengan buku yang ditulis oleh `author_name`. `argpartition` efisien untuk menemukan indeks nilai terbesar tanpa mengurutkan seluruh array.
@@ -266,11 +257,19 @@ Content Based Filtering merupakan salah satu pendekatan dalam sistem rekomendasi
    - Terakhir, `pd.DataFrame(closest).merge(items).head(n)` menggabungkan daftar penulis buku yang direkomendasikan dengan DataFrame `new_book` untuk mendapatkan judul buku yang sesuai dan menampilkan n rekomendasi teratas.
    - Kemudian menguji fungsi dengan mencari buku-buku oleh 'Peter Carey' dan kemudian mendapatkan rekomendasi berdasarkan penulis tersebut.
 
-![image](https://github.com/user-attachments/assets/6b2fa6b5-7410-4369-b901-58b37bd7bbb6)
+Parameter yang Digunakan : 
+1. Cosine Similarity :
+   a. `book_recommendations` function :
+   - `author_name` : Nama penulis sebagai input untuk mencari rekomendasi.
+   - `data_similarity` : DataFrame kemiripan konsinus.
+   - `items` : DataFrame yang berisi `book_author` dan `book_title`.
+   - `n=10` : Jumlah rekomendasi teratas yang akan ditampilkan. 
+     
+![image](https://github.com/user-attachments/assets/164e8c26-79d3-4b05-a681-31dbf3939ef6)
 
 Gambar 10 Mencari buku-buku oleh 'Peter Carey' 
 
-![image](https://github.com/user-attachments/assets/ed72122b-d993-42a5-ab7e-229cda431ec8)
+![image](https://github.com/user-attachments/assets/7d156228-943f-408a-bf42-c6ab35accbb6)
 
 Gambar 11 Rekomendasi buku berdasarkan penulis 'Peter Carey' 
 
@@ -327,6 +326,16 @@ Collaborative Filtering merupakan pendekatan dalam sistem rekomendasi yang merek
    - `top_rating_indices = rating.argsort()[-10:][::-1]` mendapatkan indeks dari 10 rating prediksi tertinggi.
    - `recommended_book_ids = [...]` mengonversi kembali indeks buku yang di-encode menjadi `ISBN` asli.
    - Kemudian menampilkan buku-buku yang paling sering diberi rating tinggi oleh pengguna tersebut (berdasarkan data history) dan membandingkannya dengan 10 buku yang direkomendasikan oleh model *Collaborative Filtering*.
+  
+Parameter yang Digunakan : 
+- `num_users` : Jumlah total pengguna unik dalam dataset.
+- `num_book` : Jumlah total buku unik dalam dataset.
+- `embedding_size` : Dimensi (ukuran) vektor embedding untuk pengguna dan buku. Dalam kode, ini diatur ke `50`.
+- Loss Function: `tf.keras.losses.BinaryCrossentropy()`. Digunakan untuk membuat kemiripan dengan memprediksi probabilitas rating tinggi.
+- Optimizer : `keras.optimizers.Adam(learning_rate=0.001)`. Adam adalah optimizer populer yang adaptif, secara otomatis menyesuaikan tingkat pembelajaran selama pelatihan.
+- Metrik Evaluasi: `tf.keras.metrics.RootMeanSquaredError()`. RMSE digunakan selama pelatihan untuk mengukur seberapa baik model memprediksi rating sebenarnya.
+- Batch Size (`batch_size=8`) : Jumlah pasangan pengguna-buku yang diproses dalam satu iterasi pelatihan.
+- Validation Data (`validation_data = (X_val, y_val`)): Data yang digunakan untuk mengevaluasi kinerja model setelah setiap epoch dan memantau overfitting.
 
 ![image](https://github.com/user-attachments/assets/bda3c2a7-29ac-4d5e-aa21-20a10133a73c)
 
@@ -345,11 +354,17 @@ Keuntungan *Collaborative Filtering* yaitu :
 
 1. Precision@k : mengukur berapa banyak item yang direkomendasikan di antara k item teratas yang sebenarnya relevan bagi pengguna, yaitu buku yang disukai pengguna di set pengujian. Rumusnya adalah :
 
-   $Precision@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item yang direkomendasikan} (k) . 100% 
+   $Precision@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item yang direkomendasikan} (k) . 100%
+
+   - Hasil : 0.0074
 
 2. Recall@k: mengukur berapa banyak item relevan di set pengujian yang berhasil ditangkap oleh rekomendasi k teratas. Rumusnya adalah:
 
    $Recall@k = {Jumlah item yang direkomendasikan yang relevan} / {Jumlah item relevan di set pengujian}
+
+   - Hasil : 0.0556
+
+Hasil evaluasi menunjukkan bahwa rata-rata sekitar **0.74%** dari 10 rekomendasi teratas yang diberikan oleh model *Content-Based Filtering* relevan bagi pengguna, dan model berhasil merekomendasikan sekitar **5.56%** dari total buku yang disukai pengguna dalam 10 rekomendasi teratas. Nilai ini dihitung pada pengguna yang memiliki buku disukai di set pengujian dan juga memiliki setidaknya satu buku disukai di set pelatihan untuk mendasari rekomendasi.
 
 Metrik ini umum digunakan dalam sistem rekomendasi untuk mengukur seberapa baik model dalam memberikan item yang disukai pengguna. Precision@k fokus pada akurasi dari rekomendasi teratas, sementara Recall@k fokus pada kemampuan model untuk menemukan semua item relevan yang mungkin diminati pengguna. 
 
