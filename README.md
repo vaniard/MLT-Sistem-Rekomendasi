@@ -259,6 +259,7 @@ Content Based Filtering merupakan salah satu pendekatan dalam sistem rekomendasi
 
 Parameter yang Digunakan : 
 1. Cosine Similarity :
+
    a. `book_recommendations` function :
    - `author_name` : Nama penulis sebagai input untuk mencari rekomendasi.
    - `data_similarity` : DataFrame kemiripan konsinus.
@@ -328,6 +329,7 @@ Collaborative Filtering merupakan pendekatan dalam sistem rekomendasi yang merek
    - Kemudian menampilkan buku-buku yang paling sering diberi rating tinggi oleh pengguna tersebut (berdasarkan data history) dan membandingkannya dengan 10 buku yang direkomendasikan oleh model *Collaborative Filtering*.
   
 Parameter yang Digunakan : 
+2. `RecommenderNet` class :
 - `num_users` : Jumlah total pengguna unik dalam dataset.
 - `num_book` : Jumlah total buku unik dalam dataset.
 - `embedding_size` : Dimensi (ukuran) vektor embedding untuk pengguna dan buku. Dalam kode, ini diatur ke `50`.
@@ -335,6 +337,7 @@ Parameter yang Digunakan :
 - Optimizer : `keras.optimizers.Adam(learning_rate=0.001)`. Adam adalah optimizer populer yang adaptif, secara otomatis menyesuaikan tingkat pembelajaran selama pelatihan.
 - Metrik Evaluasi: `tf.keras.metrics.RootMeanSquaredError()`. RMSE digunakan selama pelatihan untuk mengukur seberapa baik model memprediksi rating sebenarnya.
 - Batch Size (`batch_size=8`) : Jumlah pasangan pengguna-buku yang diproses dalam satu iterasi pelatihan.
+- `epochs=100` : Jumlah iterasi penuh melalui seluruh dataset pelatihan.
 - Validation Data (`validation_data = (X_val, y_val`)): Data yang digunakan untuk mengevaluasi kinerja model setelah setiap epoch dan memantau overfitting.
 
 ![image](https://github.com/user-attachments/assets/bda3c2a7-29ac-4d5e-aa21-20a10133a73c)
